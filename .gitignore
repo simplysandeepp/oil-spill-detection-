@@ -1,0 +1,38 @@
+# Virtual environment
+venv/
+env/
+.venv/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# Uploads
+temp_uploads/
+*.jpg
+*.jpeg
+*.png
+!assets/*.png
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Model files (will download from Google Drive)
+*.h5
+models/*.h5
+best_model.h5
+
+# Notebooks
+*.ipynb_checkpoints

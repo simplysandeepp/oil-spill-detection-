@@ -1,0 +1,23 @@
+# Core Deep Learning
+tensorflow>=2.16.0
+keras>=2.15.0
+
+# Image Processing
+opencv-python==4.9.0.80
+Pillow==10.2.0
+
+# Data Processing
+numpy==1.26.3
+pandas==2.2.0
+
+# Visualization
+matplotlib==3.8.2
+seaborn==0.13.1
+
+# Web Application
+streamlit==1.31.0
+
+# Utilities
+tqdm==4.66.1
+scikit-learn==1.4.0
+gdown==5.1.0

@@ -1,7 +1,5 @@
 # ============================================================================
-# APP_PREMIUM.PY - Streamlit Web Application (Premium Light Bluish UI)
-# This file preserves your model logic and replaces only the web UI/UX parts.
-# Do NOT change the inference utilities - they are imported and used as-is.
+# STREAMLIT_APP.PY - Streamlit Web Application (Fixed Version)
 # ============================================================================
 
 import streamlit as st
@@ -140,28 +138,6 @@ header {visibility: hidden;}
     z-index: 1;
 }
 
-.cta-button {
-    display: inline-block;
-    background: linear-gradient(135deg, #0EA5E9 0%, #06B6D4 100%);
-    color: white;
-    padding: 16px 40px;
-    border-radius: 12px;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 1.1rem;
-    box-shadow: 0 10px 30px rgba(14, 165, 233, 0.3);
-    transition: all 0.3s ease;
-    position: relative;
-    z-index: 1;
-    border: none;
-    cursor: pointer;
-}
-
-.cta-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 15px 40px rgba(14, 165, 233, 0.4);
-}
-
 /* ================ ABOUT SECTION ================ */
 .about-section {
     margin: 50px 0;
@@ -226,17 +202,6 @@ header {visibility: hidden;}
 }
 
 /* ================ UPLOAD SECTION ================ */
-.upload-section {
-    background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(240,249,255,0.9) 100%);
-    backdrop-filter: blur(10px);
-    border-radius: 24px;
-    padding: 40px;
-    margin: 40px 0;
-    box-shadow: 0 20px 60px rgba(14, 165, 233, 0.1);
-    border: 1px solid rgba(14, 165, 233, 0.15);
-    animation: fadeInUp 0.8s ease-out 0.6s both;
-}
-
 .section-title {
     font-family: 'Poppins', sans-serif;
     font-size: 2rem;
@@ -437,16 +402,6 @@ header {visibility: hidden;}
     font-weight: 600;
 }
 
-/* ================ ANIMATIONS ================ */
-@keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.8; }
-}
-
-.pulse {
-    animation: pulse 2s ease-in-out infinite;
-}
-
 /* ================ DATABASE SECTION ================ */
 .database-section {
     background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(240,249,255,0.9) 100%);
@@ -557,9 +512,8 @@ def add_detection_record(filename, has_spill, coverage_pct, avg_confidence, max_
         'max_confidence': round(max_confidence * 100, 1),
         'detected_pixels': detected_pixels
     }
-    st.session_state.detection_records.insert(0, record)  # Add to beginning
+    st.session_state.detection_records.insert(0, record)
     
-    # Keep only last 50 records to avoid memory issues
     if len(st.session_state.detection_records) > 50:
         st.session_state.detection_records = st.session_state.detection_records[:50]
 
@@ -570,10 +524,10 @@ def get_records_dataframe():
     return pd.DataFrame(st.session_state.detection_records)
 
 
-# ------------------------ HELPERS & MODEL (UNCHANGED LOGIC) ----------------
+# ------------------------ HELPERS & MODEL ----------------------------------
 @st.cache_resource
 def load_model():
-    """Load the model - UNCHANGED"""
+    """Load the model"""
     try:
         detector = get_detector(cfg.MODEL_PATH)
         return detector
@@ -583,7 +537,7 @@ def load_model():
 
 
 def process_image(detector, uploaded_file):
-    """Process uploaded image and return results - UNCHANGED"""
+    """Process uploaded image and return results"""
     try:
         image = Image.open(uploaded_file).convert('RGB')
 
@@ -602,10 +556,20 @@ def process_image(detector, uploaded_file):
 
 
 def image_to_bytes(img: Image.Image, fmt="PNG"):
-    """Convert PIL image to bytes for downloads - UNCHANGED"""
+    """Convert PIL image to bytes for downloads"""
     buf = io.BytesIO()
     img.save(buf, format=fmt)
     return buf.getvalue()
+
+
+def ensure_uint8(img):
+    """Ensure image is in uint8 format"""
+    if img.dtype != np.uint8:
+        if img.max() <= 1.0:
+            img = (img * 255).astype(np.uint8)
+        else:
+            img = img.astype(np.uint8)
+    return img
 
 
 # ------------------------ MAIN UI -----------------------------------------
@@ -618,8 +582,6 @@ def main():
         st.session_state.total_processed = 0
     if 'total_detections' not in st.session_state:
         st.session_state.total_detections = 0
-    if 'scroll_to_upload' not in st.session_state:
-        st.session_state.scroll_to_upload = False
 
     # ==================== HERO SECTION ====================
     st.markdown("""
@@ -629,6 +591,7 @@ def main():
             Our system leverages cutting-edge Deep Learning and AI technologies to detect and analyze oil spills from satellite and aerial imagery with high speed and accuracy. Designed for environmental monitoring agencies, researchers, and response teams, it transforms raw imagery into actionable insights, helping protect marine ecosystems and coastal communities.
         </p>
         <p class="author">Developed by <strong>Sandeep Prajapati ❣️</strong></p>
+    </div>
     """, unsafe_allow_html=True)
 
     # ==================== ABOUT SECTION ====================
@@ -653,7 +616,6 @@ def main():
         </div>
     </div>
     """, unsafe_allow_html=True)
-    # ==================== SCROLL TO UPLOAD ====================
 
     # ==================== UPLOAD SECTION ====================
     st.markdown('<h2 class="section-title">📤 Upload & Analyze Imagery</h2>', unsafe_allow_html=True)
@@ -694,8 +656,6 @@ def main():
     with col_btn2:
         clear_button = st.button("♻️ Clear Results", use_container_width=True)
 
-    st.markdown('</div>', unsafe_allow_html=True)
-
     # Handle clear button
     if clear_button:
         st.session_state.total_processed = 0
@@ -727,13 +687,20 @@ def main():
                 detected_pixels=results['metrics']['detected_pixels']
             )
 
-            # Create visualizations
+            # Ensure all images are uint8 for proper color display
+            original_img = ensure_uint8(results['original_image'])
+            binary_mask = ensure_uint8(results['binary_mask'])
+            
+            # Create visualizations with proper color handling
             overlay = create_overlay(
-                results['original_image'],
-                results['binary_mask'],
+                original_img,
+                binary_mask,
                 alpha=overlay_alpha
             )
-            heatmap = create_confidence_heatmap(results['confidence_map'])
+            overlay = ensure_uint8(overlay)
+            
+            heatmap = create_confidence_heatmap(results['confidence_map'], original_img)
+            heatmap = ensure_uint8(heatmap)
 
             # Success message
             if results['metrics']['has_spill']:
@@ -750,8 +717,8 @@ def main():
             with col1:
                 st.markdown('<div class="result-card">', unsafe_allow_html=True)
                 st.markdown('<h3>Detection Overlay</h3>', unsafe_allow_html=True)
-                st.image(overlay, use_container_width=True)
-                ov_pil = Image.fromarray(overlay) if isinstance(overlay, np.ndarray) else overlay
+                st.image(overlay, use_column_width=True, channels="RGB")
+                ov_pil = Image.fromarray(overlay)
                 st.download_button(
                     "📥 Download Overlay",
                     data=image_to_bytes(ov_pil),
@@ -765,8 +732,8 @@ def main():
             with col2:
                 st.markdown('<div class="result-card">', unsafe_allow_html=True)
                 st.markdown('<h3>Confidence Heatmap</h3>', unsafe_allow_html=True)
-                st.image(heatmap, use_container_width=True)
-                hm_pil = Image.fromarray(heatmap) if isinstance(heatmap, np.ndarray) else heatmap
+                st.image(heatmap, use_column_width=True, channels="RGB")
+                hm_pil = Image.fromarray(heatmap)
                 st.download_button(
                     "📥 Download Heatmap",
                     data=image_to_bytes(hm_pil),
@@ -819,9 +786,10 @@ def main():
 
             with tab1:
                 st.image(
-                    results['binary_mask'],
+                    binary_mask,
                     caption='Binary segmentation mask (white = oil spill detected)',
-                    use_container_width=True
+                    use_column_width=True,
+                    clamp=True
                 )
 
             with tab2:

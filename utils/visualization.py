@@ -1,5 +1,5 @@
 # ============================================================================
-# VISUALIZATION.PY - Visualization Utilities
+# VISUALIZATION.PY - Visualization Utilities (Fixed Version)
 # ============================================================================
 
 import cv2
@@ -19,8 +19,19 @@ def create_overlay(original_image, binary_mask, alpha=cfg.OVERLAY_ALPHA):
         alpha: Transparency factor for overlay
         
     Returns:
-        overlay_image: Image with red overlay on detected regions
+        overlay_image: Image with red overlay on detected regions (uint8)
     """
+    # Ensure images are uint8
+    if original_image.dtype != np.uint8:
+        if original_image.max() <= 1.0:
+            original_image = (original_image * 255).astype(np.uint8)
+        else:
+            original_image = original_image.astype(np.uint8)
+    
+    # Ensure binary mask is uint8
+    if binary_mask.dtype != np.uint8:
+        binary_mask = binary_mask.astype(np.uint8)
+    
     # Ensure same dimensions
     if original_image.shape[:2] != binary_mask.shape:
         binary_mask = cv2.resize(binary_mask, 
@@ -32,6 +43,9 @@ def create_overlay(original_image, binary_mask, alpha=cfg.OVERLAY_ALPHA):
     
     # Blend with original
     blended = cv2.addWeighted(original_image, 1 - alpha, overlay, alpha, 0)
+    
+    # Ensure output is uint8
+    blended = blended.astype(np.uint8)
     
     return blended
 
@@ -45,7 +59,7 @@ def create_confidence_heatmap(confidence_map, original_image=None):
         original_image: Optional original image to blend with
         
     Returns:
-        heatmap_image: RGB heatmap visualization
+        heatmap_image: RGB heatmap visualization (uint8)
     """
     # Normalize to 0-255
     heatmap = (confidence_map * 255).astype(np.uint8)
@@ -56,12 +70,22 @@ def create_confidence_heatmap(confidence_map, original_image=None):
     
     # Optionally blend with original image
     if original_image is not None:
+        # Ensure original image is uint8
+        if original_image.dtype != np.uint8:
+            if original_image.max() <= 1.0:
+                original_image = (original_image * 255).astype(np.uint8)
+            else:
+                original_image = original_image.astype(np.uint8)
+            
         if original_image.shape[:2] != heatmap_colored.shape[:2]:
             heatmap_colored = cv2.resize(heatmap_colored,
                                         (original_image.shape[1], 
                                          original_image.shape[0]))
         heatmap_colored = cv2.addWeighted(original_image, 0.5, 
                                          heatmap_colored, 0.5, 0)
+    
+    # Ensure output is uint8
+    heatmap_colored = heatmap_colored.astype(np.uint8)
     
     return heatmap_colored
 
@@ -77,8 +101,16 @@ def create_comparison_view(original, binary_mask, confidence_map, overlay):
         overlay: Overlay visualization
         
     Returns:
-        comparison_image: Combined visualization
+        comparison_image: Combined visualization (uint8)
     """
+    # Ensure all images are uint8
+    if original.dtype != np.uint8:
+        original = (original * 255).astype(np.uint8) if original.max() <= 1.0 else original.astype(np.uint8)
+    if binary_mask.dtype != np.uint8:
+        binary_mask = binary_mask.astype(np.uint8)
+    if overlay.dtype != np.uint8:
+        overlay = overlay.astype(np.uint8)
+    
     fig, axes = plt.subplots(2, 2, figsize=(12, 12))
     
     # Original
@@ -124,8 +156,15 @@ def add_metrics_overlay(image, metrics, font_scale=0.7):
         font_scale: Font size scale factor
         
     Returns:
-        image_with_text: Image with metrics overlay
+        image_with_text: Image with metrics overlay (uint8)
     """
+    # Ensure image is uint8
+    if image.dtype != np.uint8:
+        if image.max() <= 1.0:
+            image = (image * 255).astype(np.uint8)
+        else:
+            image = image.astype(np.uint8)
+    
     img_copy = image.copy()
     
     # Prepare text

@@ -624,16 +624,41 @@ def main():
     # ==================== HERO SECTION ====================
     st.markdown("""
     <div class="hero-section">
-        <h1>🌊 AI-Powered Oil Spill Detection System</h1>
-        <p class="subtitle">Detect and analyze oil spills from satellite imagery instantly using Deep Learning</p>
-        <p class="author">Made by Sandeep Prajapati</p>
-    </div>
+        <h1 style="text-align:center;">🌊 AI-Powered Oil Spill Detection System</h1>
+        <p class="subtitle" style="text-align:justify;">
+            Our system leverages cutting-edge Deep Learning and AI technologies to detect and analyze oil spills from satellite and aerial imagery with high speed and accuracy. Designed for environmental monitoring agencies, researchers, and response teams, it transforms raw imagery into actionable insights, helping protect marine ecosystems and coastal communities.
+        </p>
+        <p class="subtitle" style="font-weight:bold;">Key Highlights:</p>
+        <p class="subtitle" style="margin-left:20px;">• <b>Instant Analysis:</b> Process single images or large batches in minutes, far faster than manual inspection.</p>
+        <p class="subtitle" style="margin-left:20px;">• <b>Accurate Detection:</b> AI models identify oil-covered water regions even in challenging conditions such as clouds, sun glare, or mixed reflections.</p>
+        <p class="subtitle" style="margin-left:20px;">• <b>Actionable Outputs:</b> Get segmentation masks, confidence scores, area estimates, and polygon/bounding box data ready for response planning.</p>
     """, unsafe_allow_html=True)
 
-    # Note: About section removed as requested
+    # ==================== ABOUT SECTION ====================
+    st.markdown('<h2 class="about-title">Understanding Oil Spill Detection</h2>', unsafe_allow_html=True)
+    
+    st.markdown("""
+    <div class="cards-container">
+        <div class="info-card">
+            <span class="icon">🌊</span>
+            <h3>What is an Oil Spill?</h3>
+            <p>An oil spill is the release of liquid petroleum hydrocarbons into the environment, especially marine areas. These incidents can devastate marine ecosystems, kill wildlife, contaminate water sources, and cause long-lasting environmental damage that affects coastal communities and economies.</p>
+        </div>
+        <div class="info-card">
+            <span class="icon">🛰️</span>
+            <h3>Why Early Detection Matters</h3>
+            <p>Early detection is critical for effective response. The faster we identify oil spills, the quicker cleanup crews can be deployed, containment strategies can be implemented, and environmental damage can be minimized. Time is the most crucial factor in spill response operations.</p>
+        </div>
+        <div class="info-card">
+            <span class="icon">⚙️</span>
+            <h3>How AI Helps</h3>
+            <p>Deep learning models analyze satellite and aerial imagery at scale, identifying potential oil spills with high accuracy. AI can process thousands of images in minutes, detecting patterns invisible to the human eye, and enabling rapid response to environmental threats worldwide.</p>
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+    # ==================== SCROLL TO UPLOAD ====================
 
     # ==================== UPLOAD SECTION ====================
-    st.markdown('<div class="upload-section" id="upload-section">', unsafe_allow_html=True)
     st.markdown('<h2 class="section-title">📤 Upload & Analyze Imagery</h2>', unsafe_allow_html=True)
     st.markdown('<p class="section-subtitle">Upload satellite or aerial imagery to detect potential oil spills using our AI model</p>', unsafe_allow_html=True)
 

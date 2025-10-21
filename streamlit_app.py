@@ -373,6 +373,19 @@ header {visibility: hidden;}
     text-transform: uppercase;
     letter-spacing: 1px;
 }
+/* IMPROVED: Make file uploader text darker and more visible */
+[data-testid="stFileUploader"] label,
+[data-testid="stFileUploader"] small,
+[data-testid="stFileUploader"] div {
+    color: #8ca2de !important;
+    font-weight: 600 !important;
+    font-size: 1.05rem !important;
+}
+
+[data-testid="stFileUploader"] small {
+    font-size: 0.95rem !important;
+    color: #8ca2de !important;
+}
 
 /* ================ SUCCESS/ERROR ALERTS - HIGH CONTRAST ================ */
 .stAlert {
@@ -593,8 +606,8 @@ header {visibility: hidden;}
 
 /* ================ LOADING SPINNER ================ */
 .stSpinner > div {
-    border-top-color: #1976D2 !important;
-    border-right-color: #1976D2 !important;
+    border-top-color: #8ca2de !important;
+    border-right-color: #8ca2de !important;
 }
 
 /* ================ IMAGE CONTAINERS - PROPER BORDERS ================ */
@@ -1000,8 +1013,6 @@ def main():
                 """)
                 
                 st.markdown("""
-                    </div>
-                </div>
                 """, unsafe_allow_html=True)
 
     # ==================== STATISTICS BANNER ====================

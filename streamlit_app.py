@@ -628,7 +628,7 @@ def main():
         <p class="subtitle" style="text-align:justify;">
             Our system leverages cutting-edge Deep Learning and AI technologies to detect and analyze oil spills from satellite and aerial imagery with high speed and accuracy. Designed for environmental monitoring agencies, researchers, and response teams, it transforms raw imagery into actionable insights, helping protect marine ecosystems and coastal communities.
         </p>
-        <p class="author">Developed by <strong>Sandeep Prajapati ☕</strong></p>
+        <p class="author">Developed by <strong>Sandeep Prajapati ❣️</strong></p>
     """, unsafe_allow_html=True)
 
     # ==================== ABOUT SECTION ====================

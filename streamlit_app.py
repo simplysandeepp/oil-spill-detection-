@@ -223,6 +223,20 @@ header {visibility: hidden;}
     box-shadow: 0 6px 20px rgba(25, 118, 210, 0.12);
 }
 
+/* IMPROVED: Make file uploader text darker and more visible */
+[data-testid="stFileUploader"] label,
+[data-testid="stFileUploader"] small,
+[data-testid="stFileUploader"] div {
+    color: #0D1B2A !important;
+    font-weight: 600 !important;
+    font-size: 1.05rem !important;
+}
+
+[data-testid="stFileUploader"] small {
+    font-size: 0.95rem !important;
+    color: #2C3E50 !important;
+}
+
 /* ================ SLIDERS - IMPROVED LABELS ================ */
 .stSlider {
     padding: 15px 0;
@@ -344,12 +358,17 @@ header {visibility: hidden;}
 .metric-box {
     background: #FFFFFF;
     border-radius: 16px;
-    padding: 25px 20px;
-    margin-bottom: 20px;
+    padding: 20px 15px;
+    margin-bottom: 15px;
     border: 3px solid #1976D2;
     box-shadow: 0 6px 20px rgba(25, 118, 210, 0.15);
     text-align: center;
     transition: all 0.3s ease;
+    min-height: 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .metric-box:hover {
@@ -359,19 +378,21 @@ header {visibility: hidden;}
 
 .metric-value {
     font-family: 'Poppins', sans-serif;
-    font-size: 2.5rem;
+    font-size: 2rem;
     font-weight: 800;
     color: #0D1B2A;
     margin-bottom: 8px;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.05);
+    line-height: 1.2;
 }
 
 .metric-label {
     color: #4A5568;
-    font-size: 0.95rem;
+    font-size: 0.85rem;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 1px;
+    line-height: 1.3;
 }
 
 /* ================ SUCCESS/ERROR ALERTS - HIGH CONTRAST ================ */
@@ -589,12 +610,51 @@ header {visibility: hidden;}
         display: block;
         margin: 20px 0;
     }
+    
+    .metric-box {
+        min-height: 100px;
+    }
+    
+    .metric-value {
+        font-size: 1.5rem;
+    }
+    
+    .metric-label {
+        font-size: 0.75rem;
+    }
+}
+
+/* IMPROVED: Better responsive handling for metrics grid */
+.metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 15px;
+    width: 100%;
+}
+
+@media (max-width: 1200px) {
+    .metrics-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .metrics-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 /* ================ LOADING SPINNER ================ */
 .stSpinner > div {
     border-top-color: #1976D2 !important;
     border-right-color: #1976D2 !important;
+}
+
+/* IMPROVED: Make spinner text darker and more visible */
+.stSpinner + div {
+    color: #0D1B2A !important;
+    font-weight: 700 !important;
+    font-size: 1.1rem !important;
 }
 
 /* ================ IMAGE CONTAINERS - PROPER BORDERS ================ */
@@ -915,32 +975,28 @@ def main():
                 </div>
                 """, unsafe_allow_html=True)
                 
-                # IMPROVED: High-contrast metric boxes with proper spacing
+                # IMPROVED: Auto-arranged metric boxes in responsive grid
                 st.markdown(f"""
-                <div class="metric-box">
-                    <div class="metric-value">{results['metrics']['coverage_percentage']:.2f}%</div>
-                    <div class="metric-label">Coverage Area</div>
-                </div>
-                """, unsafe_allow_html=True)
-                
-                st.markdown(f"""
-                <div class="metric-box">
-                    <div class="metric-value">{results['metrics']['avg_confidence']:.1%}</div>
-                    <div class="metric-label">Avg Confidence</div>
-                </div>
-                """, unsafe_allow_html=True)
-                
-                st.markdown(f"""
-                <div class="metric-box">
-                    <div class="metric-value">{results['metrics']['max_confidence']:.1%}</div>
-                    <div class="metric-label">Max Confidence</div>
-                </div>
-                """, unsafe_allow_html=True)
-                
-                st.markdown(f"""
-                <div class="metric-box">
-                    <div class="metric-value">{results['metrics']['detected_pixels']:,}</div>
-                    <div class="metric-label">Detected Pixels</div>
+                <div class="metrics-grid">
+                    <div class="metric-box">
+                        <div class="metric-value">{results['metrics']['coverage_percentage']:.2f}%</div>
+                        <div class="metric-label">Coverage Area</div>
+                    </div>
+                    
+                    <div class="metric-box">
+                        <div class="metric-value">{results['metrics']['avg_confidence']:.1%}</div>
+                        <div class="metric-label">Avg Confidence</div>
+                    </div>
+                    
+                    <div class="metric-box">
+                        <div class="metric-value">{results['metrics']['max_confidence']:.1%}</div>
+                        <div class="metric-label">Max Confidence</div>
+                    </div>
+                    
+                    <div class="metric-box">
+                        <div class="metric-value">{results['metrics']['detected_pixels']:,}</div>
+                        <div class="metric-label">Detected Pixels</div>
+                    </div>
                 </div>
                 """, unsafe_allow_html=True)
 

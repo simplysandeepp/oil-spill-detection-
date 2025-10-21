@@ -334,7 +334,7 @@ def create_legend_overlay(image, show_legend=True):
     cv2.putText(img_copy, "High", 
                (legend_x + legend_width - 40, legend_y + legend_height + 20), 
                cv2.FONT_HERSHEY_SIMPLEX, 0.5, (13, 27, 42), 2)
-    cv2.putText(img_copy, "Confidence", 
+    cv2.putText(img_copy, "Confidence",
                (legend_x + legend_width // 2 - 40, legend_y - 10), 
                cv2.FONT_HERSHEY_SIMPLEX, 0.6, (13, 27, 42), 2)
     

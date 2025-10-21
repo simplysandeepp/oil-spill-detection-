@@ -769,14 +769,19 @@ def main():
                 </div>
                 """, unsafe_allow_html=True)
                 
+                coverage = results['metrics'].get('coverage_percentage') if results and 'metrics' in results else None
+                if coverage is not None and isinstance(coverage, (float, int)):
+                    coverage_str = f"{coverage:.2f}%"
+                else:
+                    coverage_str = "N/A"
+
                 st.markdown(f"""
-                <div class="metric-box">
-                    <div class="metric-value">{results['metrics']['detected_pixels']:,}</div>
-                    <div class="metric-label">Detected Pixels</div>
-                </div>
+                    <div class="metric-box">
+                        <div class="metric-value">{coverage_str}</div>
+                        <div class="metric-label">Coverage Area</div>
+                    </div>
                 """, unsafe_allow_html=True)
-                
-                st.markdown('</div>', unsafe_allow_html=True)
+
 
             st.markdown('</div>', unsafe_allow_html=True)
 

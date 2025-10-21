@@ -182,13 +182,13 @@ def add_metrics_overlay(image, metrics, font_scale=0.7):
         
         # Background
         cv2.rectangle(img_copy, (10, y_pos - 25), (400, y_pos + 5), 
-                     (0, 0, 0), -1)
+                     (40, 40, 40), -1)
         cv2.rectangle(img_copy, (10, y_pos - 25), (400, y_pos + 5), 
-                     (255, 255, 255), 2)
+                     (220, 220, 220), 2)
         
         # Text color based on detection
         if i == 0:
-            color = (0, 255, 0) if metrics['has_spill'] else (255, 255, 255)
+            color = (255, 20, 0) if metrics['has_spill'] else (68, 183, 255)
         else:
             color = (255, 255, 255)
         

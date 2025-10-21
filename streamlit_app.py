@@ -708,9 +708,6 @@ def main():
             else:
                 st.info("ℹ️ No oil spill detected in this image")
 
-            # Results grid
-            st.markdown('<div class="results-grid">', unsafe_allow_html=True)
-
             # Column 1: Detection Overlay
             col1, col2, col3 = st.columns(3)
             
@@ -921,7 +918,6 @@ def main():
                 st.session_state.detection_records = []
                 st.rerun()
         
-        st.markdown('</div>', unsafe_allow_html=True)
     else:
         st.markdown("""
         <div class="database-section">

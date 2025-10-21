@@ -733,8 +733,8 @@ def main():
     # ==================== HERO SECTION ====================
     st.markdown("""
     <div class="hero-section">
-        <span class="emoji-icon">🌊</span>
-        <h1>AI-Powered Oil Spill Detection System</h1>
+        <span class="emoji-icon">🌊🌊</span>
+        <h1>HydroVexel - AI Powered Oil Spill Detection System</h1>
         <p class="subtitle">
             Our system leverages cutting-edge Deep Learning and AI technologies to detect and analyze oil spills from satellite and aerial imagery with high speed and accuracy. Designed for environmental monitoring agencies, researchers, and response teams, it transforms raw imagery into actionable insights, helping protect marine ecosystems and coastal communities.
         </p>

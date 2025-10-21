@@ -19,7 +19,7 @@ OVERLAY_ALPHA = 0.4  # Transparency for overlay
 SPILL_COLOR = [255, 0, 0]  # Red color for detected oil spills
 
 # Streamlit Settings
-PAGE_TITLE = "🛢️ Oil Spill Detection System"
+PAGE_TITLE = "HydroVexel - Oil Spill Detection System"
 PAGE_ICON = "🛢️"
 MAX_FILE_SIZE = 10  # MB
 

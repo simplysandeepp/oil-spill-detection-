@@ -628,10 +628,7 @@ def main():
         <p class="subtitle" style="text-align:justify;">
             Our system leverages cutting-edge Deep Learning and AI technologies to detect and analyze oil spills from satellite and aerial imagery with high speed and accuracy. Designed for environmental monitoring agencies, researchers, and response teams, it transforms raw imagery into actionable insights, helping protect marine ecosystems and coastal communities.
         </p>
-        <p class="subtitle" style="font-weight:bold;">Key Highlights:</p>
-        <p class="subtitle" style="margin-left:20px;">• <b>Instant Analysis:</b> Process single images or large batches in minutes, far faster than manual inspection.</p>
-        <p class="subtitle" style="margin-left:20px;">• <b>Accurate Detection:</b> AI models identify oil-covered water regions even in challenging conditions such as clouds, sun glare, or mixed reflections.</p>
-        <p class="subtitle" style="margin-left:20px;">• <b>Actionable Outputs:</b> Get segmentation masks, confidence scores, area estimates, and polygon/bounding box data ready for response planning.</p>
+        <p class="author">Developed by <strong>Sandeep Prajapati ☕</strong></p>
     """, unsafe_allow_html=True)
 
     # ==================== ABOUT SECTION ====================

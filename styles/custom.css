@@ -1,0 +1,329 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@400;500;600;700;800;900&display=swap');
+
+/* ================ COLOR PALETTE ================ */
+:root {
+    --deep-navy: #001f3f;
+    --ocean-teal: #006d77;
+    --light-aqua: #E0F7FA;
+    --accent-cyan: #00bcd4;
+    --dark-overlay: rgba(0, 20, 40, 0.85);
+    --glass-effect: rgba(0, 31, 63, 0.75);
+}
+
+/* ================ BASE ENHANCEMENTS ================ */
+.stApp {
+    background: transparent !important;
+}
+
+/* Main content wrapper - ensure it's above video */
+.main .block-container {
+    position: relative;
+    z-index: 1;
+    background: transparent;
+}
+
+/* ================ TEXT ENHANCEMENTS ================ */
+h1, h2, h3, h4, h5, h6 {
+    color: var(--light-aqua) !important;
+    text-shadow: 0 0 10px rgba(0, 188, 212, 0.5),
+                 0 2px 5px rgba(0, 0, 0, 0.8) !important;
+    font-family: 'Poppins', sans-serif !important;
+}
+
+p, span, div, label {
+    color: var(--light-aqua) !important;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7);
+}
+
+/* Strong text gets cyan glow */
+strong {
+    color: var(--accent-cyan) !important;
+    text-shadow: 0 0 8px rgba(0, 188, 212, 0.6);
+}
+
+/* ================ HERO SECTION ENHANCEMENT ================ */
+.hero-section {
+    background: var(--glass-effect) !important;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(0, 188, 212, 0.4) !important;
+    box-shadow: 0 8px 32px rgba(0, 188, 212, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+}
+
+.hero-section::before {
+    background: radial-gradient(circle at 50% 50%, 
+                rgba(0, 188, 212, 0.15) 0%, 
+                transparent 70%) !important;
+}
+
+/* ================ CARDS ENHANCEMENT ================ */
+.info-card, .result-card, .metric-box, 
+.tab-content-box, .database-section,
+.image-gallery-card, .gallery-header,
+.database-header, .filter-section {
+    background: rgba(0, 31, 63, 0.35) !important; /* lighter glass */
+    backdrop-filter: blur(10px) !important;
+    border: 2px solid rgba(0, 188, 212, 0.35) !important;
+    box-shadow: 0 8px 32px rgba(0, 188, 212, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
+    transition: all 0.3s ease-in-out !important;
+}
+
+.info-card:hover, .result-card:hover, 
+.metric-box:hover, .image-gallery-card:hover {
+    border-color: var(--accent-cyan) !important;
+    box-shadow: 0 12px 48px rgba(0, 188, 212, 0.5),
+                inset 0 1px 0 rgba(255, 255, 255, 0.15) !important;
+    transform: translateY(-8px);
+}
+
+/* ================ BUTTONS ENHANCEMENT ================ */
+.stButton > button {
+    background: linear-gradient(135deg, var(--ocean-teal) 0%, var(--accent-cyan) 100%) !important;
+    color: white !important;
+    border: 2px solid rgba(0, 188, 212, 0.5) !important;
+    box-shadow: 0 4px 15px rgba(0, 188, 212, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5) !important;
+}
+
+.stButton > button:hover {
+    background: linear-gradient(135deg, var(--accent-cyan) 0%, #00e5ff 100%) !important;
+    box-shadow: 0 8px 25px rgba(0, 188, 212, 0.6),
+                0 0 20px rgba(0, 188, 212, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3) !important;
+    transform: translateY(-2px) !important;
+}
+
+.stDownloadButton > button {
+    background: linear-gradient(135deg, #00695c 0%, #00897b 100%) !important;
+    border: 2px solid rgba(0, 188, 212, 0.4) !important;
+    color: white !important;
+}
+
+.stDownloadButton > button:hover {
+    background: linear-gradient(135deg, #00897b 0%, #00acc1 100%) !important;
+    box-shadow: 0 6px 20px rgba(0, 188, 212, 0.5) !important;
+}
+
+/* ================ INPUT FIELDS ENHANCEMENT ================ */
+.stTextInput > div > div > input,
+.stSelectbox > div > div,
+[data-testid="stFileUploader"] {
+    background: rgba(0, 31, 63, 0.6) !important;
+    backdrop-filter: blur(8px) !important;
+    border: 2px solid rgba(0, 188, 212, 0.3) !important;
+    color: var(--light-aqua) !important;
+    box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.3) !important;
+}
+
+.stTextInput > div > div > input:focus,
+.stSelectbox > div > div:focus {
+    border-color: var(--accent-cyan) !important;
+    box-shadow: 0 0 15px rgba(0, 188, 212, 0.5),
+                inset 0 2px 8px rgba(0, 0, 0, 0.3) !important;
+}
+
+[data-testid="stFileUploader"] {
+    border-style: dashed !important;
+}
+
+[data-testid="stFileUploader"]:hover {
+    border-color: var(--accent-cyan) !important;
+    background: rgba(0, 31, 63, 0.8) !important;
+}
+
+/* ================ SLIDERS ENHANCEMENT ================ */
+.stSlider > div > div > div {
+    background: rgba(0, 188, 212, 0.3) !important;
+}
+
+.stSlider > div > div > div > div {
+    background: var(--accent-cyan) !important;
+    box-shadow: 0 0 10px rgba(0, 188, 212, 0.6) !important;
+}
+
+/* ================ TABS ENHANCEMENT ================ */
+.stTabs [data-baseweb="tab-list"] {
+    background: rgba(0, 31, 63, 0.7) !important;
+    backdrop-filter: blur(10px) !important;
+    border: 2px solid rgba(0, 188, 212, 0.3) !important;
+}
+
+.stTabs [data-baseweb="tab"] {
+    background: rgba(0, 109, 119, 0.4) !important;
+    color: var(--light-aqua) !important;
+    border: 2px solid transparent !important;
+}
+
+.stTabs [data-baseweb="tab"]:hover {
+    background: rgba(0, 188, 212, 0.3) !important;
+    border-color: rgba(0, 188, 212, 0.5) !important;
+}
+
+.stTabs [aria-selected="true"] {
+    background: linear-gradient(135deg, var(--ocean-teal) 0%, var(--accent-cyan) 100%) !important;
+    color: white !important;
+    border-color: var(--accent-cyan) !important;
+    box-shadow: 0 4px 15px rgba(0, 188, 212, 0.4) !important;
+}
+
+/* ================ STATUS BADGES ENHANCEMENT ================ */
+.detection-status,
+.gallery-status-badge,
+.status-detected,
+.status-clean {
+    backdrop-filter: blur(8px) !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
+    border: 2px solid rgba(255, 255, 255, 0.3) !important;
+}
+
+/* ================ STATS BANNER ENHANCEMENT ================ */
+.stats-banner,
+.db-stat-box {
+    background: var(--glass-effect) !important;
+    backdrop-filter: blur(12px) !important;
+    border: 2px solid rgba(0, 188, 212, 0.4) !important;
+}
+
+.stat-number,
+.metric-value,
+.db-stat-value {
+    color: var(--accent-cyan) !important;
+    text-shadow: 0 0 15px rgba(0, 188, 212, 0.7),
+                 0 2px 5px rgba(0, 0, 0, 0.8) !important;
+}
+
+/* ================ IMAGE GALLERY ENHANCEMENT ================ */
+.gallery-image-box {
+    background: rgba(0, 31, 63, 0.6) !important;
+    backdrop-filter: blur(8px) !important;
+    border: 2px solid rgba(0, 188, 212, 0.4) !important;
+}
+
+.gallery-image-box:hover {
+    border-color: var(--accent-cyan) !important;
+    background: rgba(0, 31, 63, 0.8) !important;
+    box-shadow: 0 8px 32px rgba(0, 188, 212, 0.5) !important;
+}
+
+.gallery-image-label {
+    background: linear-gradient(135deg, var(--ocean-teal) 0%, var(--accent-cyan) 100%) !important;
+    box-shadow: 0 4px 15px rgba(0, 188, 212, 0.4) !important;
+}
+
+/* ================ DATAFRAME ENHANCEMENT ================ */
+.stDataFrame {
+    background: rgba(0, 31, 63, 0.7) !important;
+    backdrop-filter: blur(10px) !important;
+    border: 2px solid rgba(0, 188, 212, 0.3) !important;
+}
+
+/* ================ FOOTER ENHANCEMENT ================ */
+.footer {
+    background: var(--glass-effect) !important;
+    backdrop-filter: blur(12px) !important;
+    border-top: 3px solid rgba(0, 188, 212, 0.5) !important;
+    box-shadow: 0 -8px 32px rgba(0, 109, 119, 0.3) !important;
+}
+
+/* ================ LINKS ENHANCEMENT ================ */
+a {
+    color: var(--accent-cyan) !important;
+    text-shadow: 0 0 5px rgba(0, 188, 212, 0.5);
+    transition: all 0.3s ease;
+}
+
+a:hover {
+    color: #00e5ff !important;
+    text-shadow: 0 0 10px rgba(0, 229, 255, 0.7);
+}
+
+.image-url-link {
+    background: linear-gradient(135deg, var(--ocean-teal) 0%, var(--accent-cyan) 100%) !important;
+    box-shadow: 0 4px 15px rgba(0, 188, 212, 0.4) !important;
+}
+
+.image-url-link:hover {
+    background: linear-gradient(135deg, var(--accent-cyan) 0%, #00e5ff 100%) !important;
+    box-shadow: 0 6px 20px rgba(0, 188, 212, 0.6) !important;
+}
+
+/* ================ METADATA BOX ENHANCEMENT ================ */
+.gallery-metadata-box {
+    background: rgba(0, 109, 119, 0.3) !important;
+    backdrop-filter: blur(8px) !important;
+    border: 2px solid rgba(0, 188, 212, 0.4) !important;
+}
+
+/* ================ LOADING SPINNER ENHANCEMENT ================ */
+.stSpinner > div {
+    border-top-color: var(--accent-cyan) !important;
+}
+
+/* ================ SCROLLBAR ENHANCEMENT ================ */
+::-webkit-scrollbar {
+    width: 12px;
+    background: rgba(0, 31, 63, 0.5);
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(0, 31, 63, 0.3);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, var(--ocean-teal) 0%, var(--accent-cyan) 100%);
+    border-radius: 10px;
+    border: 2px solid rgba(0, 31, 63, 0.5);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, var(--accent-cyan) 0%, #00e5ff 100%);
+    box-shadow: 0 0 10px rgba(0, 188, 212, 0.5);
+}
+
+/* Sidebar transparency */
+[data-testid="stSidebar"] {
+    background: rgba(0, 31, 63, 0.4) !important;
+    backdrop-filter: blur(10px) !important;
+    border-right: 2px solid rgba(0, 188, 212, 0.3) !important;
+}
+
+/* ================ GLASSMORPHISM ANIMATION ================ */
+@keyframes glassShimmer {
+    0%, 100% {
+        box-shadow: 0 8px 32px rgba(0, 109, 119, 0.3),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    }
+    50% {
+        box-shadow: 0 8px 32px rgba(0, 188, 212, 0.5),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    }
+}
+
+/* Apply subtle animation to cards */
+.info-card,
+.result-card,
+.database-section {
+    animation: glassShimmer 4s ease-in-out infinite;
+}
+
+/* ================ RESPONSIVE ADJUSTMENTS ================ */
+@media (max-width: 768px) {
+    .video-background video {
+        opacity: 0.3;
+    }
+    
+    .video-overlay {
+        background: rgba(0, 20, 40, 0.7);
+    }
+}
+
+/* ================ ENSURE CONTENT IS ABOVE VIDEO ================ */
+.main, .stApp > header {
+    position: relative;
+    z-index: 1;
+}

@@ -1,38 +1,60 @@
-# Virtual environment
-venv/
-env/
-.venv/
-
-# Python cache
+# -------------------------------
+# 🐍 Python
+# -------------------------------
 __pycache__/
 *.pyc
 *.pyo
 *.pyd
 .Python
 
-# Uploads
-temp_uploads/
-*.jpg
-*.jpeg
-*.png
-!assets/*.png
+# Virtual environments
+venv/
+env/
+.venv/
 
-# IDE
-.vscode/
-.idea/
-*.swp
+# Environment files
+.env
 
-# OS
-.DS_Store
-Thumbs.db
+# -------------------------------
+# 📓 Jupyter
+# -------------------------------
+*.ipynb_checkpoints
 
-# Logs
-*.log
-
-# Model files (will download from Google Drive)
+# -------------------------------
+# 🧠 Model files (will download separately)
+# -------------------------------
 *.h5
 models/*.h5
 best_model.h5
 
-# Notebooks
-*.ipynb_checkpoints
+# -------------------------------
+# 📦 Uploads & Generated Content
+# -------------------------------
+temp_uploads/
+
+# Ignore all image types by default
+*.jpg
+*.jpeg
+*.png
+
+# But keep these image folders/files tracked
+!assets/*.png
+!outputs/*.png
+
+# -------------------------------
+# 🧰 IDE & Editor Configs
+# -------------------------------
+.vscode/
+.idea/
+*.swp
+
+# -------------------------------
+# 💾 OS Files
+# -------------------------------
+.DS_Store
+Thumbs.db
+
+# -------------------------------
+# 🧾 Logs
+# -------------------------------
+*.log

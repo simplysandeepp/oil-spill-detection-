@@ -24,3 +24,9 @@ gdown==5.1.0
 
 # Compatibility fix
 protobuf==4.25.3
+
+# Supabase client
+supabase
+
+# Environment variables
+python-dotenv==1.1.1

@@ -108,7 +108,7 @@ Just visit: [https://hydrovexel.streamlit.app/](https://hydrovexel.streamlit.app
 
 1. **Clone the repo**
 ```bash
-git clone https://github.com/simplysandeepp/hydrovexel.git
+git clone https://github.com/simplysandeepp/Oil-Spill-Detection
 cd hydrovexel
 ```
 

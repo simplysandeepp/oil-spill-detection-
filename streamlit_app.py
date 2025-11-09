@@ -1240,7 +1240,10 @@ def main():
     st.markdown("""
     <div class="footer">
         <p style="margin-bottom: 10px;">🌊 <strong>HydroVexel</strong> - Protecting Our Oceans with AI</p>
-        <p class="author"><a href="https://www.linkedin.com/in/simplysandeepp/" target="_blank" style="color: inherit; text-decoration: none;"> Developed by Sandeep Prajapati ♥️</a></p>
+        <p class="author"><a href="https://www.linkedin.com/in/simplysandeepp/" target="_blank" style="color: inherit; text-decoration: none;"> Developed by Sandeep Prajapati ♥️</a></p>    
+        <p style="margin-top: 10px; font-size: 0.99rem; opacity: 0.9;">
+            Made under GDG Noida Build-a-thon 🌟
+        </p>
         <p style="margin-top: 10px; font-size: 0.95rem; opacity: 0.9;">
             Powered by Deep Learning • Streamlit • Supabase
         </p>

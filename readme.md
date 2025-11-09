@@ -46,7 +46,7 @@ Oil spills threaten:
 - 🐋 **Marine Life** - Kills fish, mammals, and birds
 - 🏖️ **Coastlines** - Pollutes beaches and shores
 - 💰 **Economies** - Damages fishing and tourism
-- 🌍 **Environment** - Long-term ecological damage
+- 🌍 **Environment** - Long-term ecological damage 
 
 Traditional detection is slow and manual. **HydroVexel** provides instant, accurate detection for faster response.
 
@@ -62,6 +62,18 @@ Traditional detection is slow and manual. **HydroVexel** provides instant, accur
 - **🌊 Beautiful UI** - Ocean-themed design with smooth animations
 
 ---
+## 🧠 System Architecture
+
+HydroVexel follows a modular pipeline for accurate oil spill detection:
+
+**Architecture Overview:**
+[System Architecture](outputs/system-architecture.png)
+
+- **Preprocessing:** Image resizing, normalization, and augmentation  
+- **Model:** U-Net with Attention Gates for segmentation  
+- **Post-Processing:** Thresholding and mask refinement  
+- **Visualization:** Detection overlays, confidence maps, and dashboards  
+- **Database:** Supabase cloud storage for historical tracking  
 
 ## 🛠️ Technology Stack
 
